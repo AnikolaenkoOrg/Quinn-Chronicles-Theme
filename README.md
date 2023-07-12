@@ -1,12 +1,12 @@
-# Edition
+# Wave
 
-The newsletter theme for [Ghost](https://github.com/TryGhost/Ghost). A beautiful way to share stories with your growing audience.
+Wave is a [Ghost](https://github.com/TryGhost/Ghost) theme dedicated to podcasters. Share your voice and words with your audience.
 
-**Demo: https://edition.ghost.io**
+**Demo: https://wave.ghost.io**
 
 # Instructions
 
-1. [Download this theme](https://github.com/TryGhost/Edition/archive/main.zip)
+1. [Download this theme](https://github.com/TryGhost/Wave/archive/main.zip)
 2. Log into Ghost, and go to the `Design` settings area to upload the zip file
 
 # Development
@@ -23,7 +23,7 @@ yarn dev
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
 
-The `zip` Gulp task packages the theme files into `dist/edition.zip`, which you can then upload to your site.
+The `zip` Gulp task packages the theme files into `dist/wave.zip`, which you can then upload to your site.
 
 ```bash
 yarn zip
@@ -33,6 +33,6 @@ yarn zip
 
 This repo is synced automatically with [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo. If you're looking to contribute or raise an issue, head over to the main repository [TryGhost/Themes](https://github.com/TryGhost/Themes) where our official themes are developed.
 
-# Copyright & License
+## Copyright & License
 
 Copyright (c) 2013-2022 Ghost Foundation - Released under the [MIT license](LICENSE).
