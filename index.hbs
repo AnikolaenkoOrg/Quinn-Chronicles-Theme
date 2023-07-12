@@ -1,41 +1,23 @@
 {{!< default}}
 
-<div class="gh-outer">
-<main class="site-main gh-inner">
+<main class="site-main">
 
-    {{#if @custom.show_featured_posts}}
-        {{> "featured-posts"}}
-    {{/if}}
+    <header class="feed-header gh-canvas">
+        {{#if @custom.feed_title}}
+            <div class="feed-header-wrapper">
+                <h2 class="feed-header-title">{{@custom.feed_title}}</h2>
+            </div>
+        {{/if}}
+    </header>
 
-    {{#get "tags" limit="all"}}
-    <div class="topic-feed">
-
-        {{#foreach tags}}
-            <section class="topic">
-                <header class="topic-header">
-                    <h2 class="topic-name">
-                        <a href="{{url}}">{{name}}</a>
-                    </h2>
-                </header>
-                {{#get "posts" order="published_at asc" filter="tag:{{slug}}" limit="5" as |featured|}}
-                    <ul class="topic-article-feed">
-                        {{#foreach featured}}
-                        <li class="topic-article">
-                            <h3 class="topic-article-title">
-                                <a class="topic-article-link" href="{{url}}">
-                                    {{> "icons/chevron-right"}} {{title}}
-                                </a>
-                            </h3>
-                        </li>
-                        {{/foreach}}
-                    </ul>
-                {{/get}}
-                <a class="topic-more" href="{{url}}">Show more →</a>
-            </section>
+    <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed gh-canvas">
+        {{#foreach posts}}
+            {{> "loop"}}
         {{/foreach}}
-
     </div>
-    {{/get}}
+
+    {{pagination}}
 
 </main>
-</div>
+
+{{#contentFor "body_class"}}{{#if @site.cover_image}} with-full-cover is-head-transparent{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

@@ -1,61 +1,127 @@
-.site-cover {
-    z-index: unset !important;
-    display: flex;
-    min-height: 500px;
+body:not(.with-full-cover) .cover {
+    margin-top: 9vmin;
 }
 
-.site-cover .search {
-    width: 400px;
-    margin: 30px auto 0;
+.with-full-cover .cover {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.site-cover .search-field {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    padding: 0 15px;
-    font-size: 16px;
-    color: darkgray;
-    cursor: pointer;
-    background-color: var(--white-color);
-    border-radius: 5px;
+.with-full-cover .cover.half {
+    height: 60vh;
+}
+
+.with-full-cover .cover::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    content: "";
+    background-color: #000;
+    opacity: 0.3;
+    transition: opacity 1.5s ease;
+}
+
+.cover.image-loading::before {
+    opacity: 1;
+}
+
+.cover-image {
+    transition: transform 2s ease;
+}
+
+.cover.image-loading .cover-image {
+    transform: scale(1.02);
 }
 
 .cover-content {
     position: relative;
-    z-index: 20;
-    padding: 30px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 720px;
     margin: auto;
-    color: var(--white-color);
     text-align: center;
 }
 
 .cover-description {
-    max-width: 720px;
-    margin: 0 auto;
     font-size: 3.6rem;
-    font-weight: 600;
-    line-height: 1.4;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
     word-break: break-word;
 }
 
 .has-serif-title .cover-description {
     font-family: var(--font-serif);
-    font-weight: 700;
 }
 
-@media (max-width: 460px) {
-    .site-cover .search {
-        width: 100%;
-    }
+.with-full-cover .cover-description {
+    color: #fff;
+}
+
+.cover-cta {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.cover-cta .button {
+    margin: 0 0.5rem;
+}
+
+.cover-form {
+    width: 100%;
+    max-width: 480px;
+    margin-top: 4.5rem;
+}
+
+.cover-form input {
+    height: 50px;
+}
+
+.with-full-cover .cover-form input {
+    background-color: #fff;
+    border-color: transparent;
+}
+
+.cover-form .form-button {
+    min-width: 110px;
+}
+
+.cover-arrow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+}
+
+.cover.half .cover-arrow {
+    display: none;
+}
+
+.cover-arrow .icon {
+    width: 28px;
+    height: 28px;
+    color: #fff;
 }
 
 @media (max-width: 767px) {
-    .site-cover {
-        min-height: 400px;
-    }
-
     .cover-description {
-        font-size: 24px;
+        font-size: 2.7rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .menu-opened .cover {
+        margin-top: 0;
     }
 }

@@ -6,12 +6,9 @@
 
 .site-content {
     flex-grow: 1;
-    padding-top: 60px;
-    padding-bottom: 30px;
+    padding: 6vmin 0;
 }
 
-@media (max-width: 767px) {
-    .site-content {
-        padding-bottom: 0;
-    }
+.is-head-brand .site-content {
+    padding-top: max(8vmin, 5rem);
 }
