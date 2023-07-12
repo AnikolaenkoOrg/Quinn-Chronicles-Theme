@@ -1,5 +1,5 @@
 {
-    "name": "wave",
+    "name": "headline",
     "description": "A Ghost theme",
     "version": "1.0.0",
     "private": true,
@@ -7,19 +7,19 @@
         "ghost": ">=5.0.0"
     },
     "license": "MIT",
-        "author": {
-            "name": "Ghost Foundation",
-            "email": "hello@ghost.org",
-            "url": "https://ghost.org"
-        },
+    "author": {
+        "name": "Ghost Foundation",
+        "email": "hello@ghost.org",
+        "url": "https://ghost.org"
+    },
     "keywords": [
         "ghost",
         "theme",
         "ghost-theme"
     ],
-    "docs": "https://wave.ghost.io/about/",
+    "docs": "https://headline.ghost.io/about/",
     "config": {
-        "posts_per_page": 5,
+        "posts_per_page": 7,
         "image_sizes": {
             "xs": {
                 "width": 150
@@ -45,7 +45,12 @@
             "navigation_layout": {
                 "type": "select",
                 "options": ["Logo on the left", "Logo in the middle", "Stacked"],
-                "default": "Logo on the left"
+                "default": "Stacked"
+            },
+            "header_style": {
+                "type": "select",
+                "options": ["Light", "Accent color", "Dark"],
+                "default": "Light"
             },
             "title_font": {
                 "type": "select",
@@ -55,22 +60,25 @@
             "body_font": {
                 "type": "select",
                 "options": ["Modern sans-serif", "Elegant serif"],
-                "default": "Modern sans-serif"
+                "default": "Elegant serif"
             },
-            "apple_podcasts_link": {
+            "white_publication_logo_for_transparent_header": {
+                "type": "image"
+            },
+            "email_signup_text": {
                 "type": "text",
-                "default": "https://podcasts.apple.com/"
+                "default": "Don't miss out on the latest news. Sign up now to get access to the library of members-only articles."
             },
-            "google_podcasts_link": {
-                "type": "text",
-                "default": "https://podcasts.google.com/"
-            },
-            "spotify_link": {
-                "type": "text",
-                "default": "https://open.spotify.com/"
-            },
-            "rss_link": {
+            "footer_text": {
                 "type": "text"
+            },
+            "enter_tag_slugs_for_primary_sections": {
+                "type": "text",
+                "group": "homepage"
+            },
+            "enter_tag_slugs_for_secondary_sections": {
+                "type": "text",
+                "group": "homepage"
             }
         }
     },

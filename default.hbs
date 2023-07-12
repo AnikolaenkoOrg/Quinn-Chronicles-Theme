@@ -4,31 +4,31 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{^is "blog"}}
-        <title>{{meta_title}}</title>
-    {{else}}
-        <title>{{block "title"}}</title>
-        {{{block "description"}}}
-    {{/is}}
+    <title>{{meta_title}}</title>
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
 
     {{ghost_head}}
 </head>
 
-<body class="{{body_class}}{{{block "body_class"}}} is-head-{{#match @custom.navigation_layout "Logo on the left"}}left-logo{{else match @custom.navigation_layout "Logo in the middle"}}middle-logo{{else}}stacked{{/match}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}">
-<div class="site">
+<body class="{{body_class}}{{{block "body_class"}}} is-head-{{#match @custom.navigation_layout "Logo on the left"}}left-logo{{else match @custom.navigation_layout "Logo in the middle"}}middle-logo{{else}}stacked{{/match}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}{{#is "tag"}}{{#if tag.feature_image}} is-head-transparent{{/if}}{{/is}}{{#match @custom.header_style "Accent color"}} is-head-brand{{/match}}{{#match @custom.header_style "Dark"}} is-head-dark{{/match}}">
+<div class="gh-site">
 
     <header id="gh-head" class="gh-head gh-outer">
         <div class="gh-head-inner gh-inner">
             <div class="gh-head-brand">
                 <div class="gh-head-brand-wrapper">
-                    <a class="gh-head-logo" href="{{@site.url}}">
+                    {{#is "home"}}<h1 class="gh-head-logo">{{/is}}
+                    <a {{^is "home"}}class="gh-head-logo"{{/is}} href="{{@site.url}}">
                         {{#if @site.logo}}
                             <img src="{{@site.logo}}" alt="{{@site.title}}">
+                            {{#if @custom.white_publication_logo_for_transparent_header}}
+                                <img src="{{@custom.white_publication_logo_for_transparent_header}}" alt="{{@site.title}}">
+                            {{/if}}
                         {{else}}
                             {{@site.title}}
                         {{/if}}
                     </a>
+                    {{#is "home"}}</h1>{{/is}}
                 </div>
                 <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
                 <button class="gh-burger"></button>
@@ -67,77 +67,46 @@
         </div>
     </header>
 
-    {{#is "home"}}
-    {{#if @site.cover_image}}
-        <div class="site-cover u-overlay">
-            <img class="cover-image u-object-fit" src="{{img_url @site.cover_image}}" alt="{{@site.title}}">
-            <div class="cover-content">
-                {{#if @site.logo}}
-                    <img class="cover-logo" src="{{@site.logo}}" alt="{{@site.title}}">
-                {{/if}}
-                {{#if @site.description}}
-                    <div class="cover-description">{{@site.description}}</div>
-                {{/if}}
-            </div>
-        </div>
-    {{/if}}
-    {{/is}}
-
-    <div class="site-content">
-        {{{body}}}
-    </div>
+    {{{body}}}
 
     <footer class="gh-foot gh-outer">
         <div class="gh-foot-inner gh-inner">
-            <div class="subscribe{{#if is_popup}} popup{{/if}}">
-                {{#if @custom.apple_podcasts_link}}
-                    <a href="{{@custom.apple_podcasts_link}}" class="subscribe-link" target="_blank" rel="noopener noreferrer">
-                        {{> "icons/apple"}}
-                        <span class="subscribe-text">Apple</span>
-                    </a>
-                {{/if}}
-                {{#if @custom.google_podcasts_link}}
-                    <a href="{{@custom.google_podcasts_link}}" class="subscribe-link" target="_blank" rel="noopener noreferrer">
-                        {{> "icons/google"}}
-                        <span class="subscribe-text">Google</span>
-                    </a>
-                {{/if}}
-                {{#if @custom.spotify_link}}
-                    <a href="{{@custom.spotify_link}}" class="subscribe-link" target="_blank" rel="noopener noreferrer">
-                        {{> "icons/spotify"}}
-                        <span class="subscribe-text">Spotify</span>
-                    </a>
-                {{/if}}
-                <a href="{{#if @custom.rss_link}}{{@custom.rss_link}}{{else}}{{@site.url}}/rss{{/if}}" class="subscribe-link rss" target="_blank" rel="noopener noreferrer">
-                    {{> "icons/rss"}}
-                    <span class="subscribe-text">RSS</span>
-                </a>
-            </div>
+            {{#if @site.members_enabled}}
+            {{#unless @member}}
+                <section class="gh-subscribe">
+                    <h3 class="gh-subscribe-title">Subscribe to {{@site.title}}</h3>
+                    {{#if @custom.email_signup_text}}
+                        <div class="gh-subscribe-description">{{@custom.email_signup_text}}</div>
+                    {{/if}}
+                    <button class="gh-subscribe-btn gh-btn" data-portal="signup">{{> "icons/email"}} Subscribe now</button>
+                </section>
+            {{/unless}}
+            {{/if}}
+
             <nav class="gh-foot-menu">
                 {{navigation type="secondary"}}
             </nav>
+
             <div class="gh-copyright">
-                {{@site.title}} © {{date format="YYYY"}}. Powered by <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>
+                {{#unless @custom.footer_text}}
+                    {{@site.title}} © {{date format="YYYY"}}. Powered by <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>
+                {{else}}
+                    {{@custom.footer_text}}
+                {{/unless}}
             </div>
         </div>
     </footer>
 
-    {{^is "post, page"}}
-        {{> "player"}}
-    {{/is}}
-
 </div>
 
-<script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous">
-</script>
-<script src="{{asset "built/main.min.js"}}"></script>
+{{#is "post, page"}}
+    {{> "pswp"}}
+{{/is}}
 
-{{{block "scripts"}}}
+<script src="{{asset "built/main.min.js"}}"></script>
 
 {{ghost_foot}}
 
 </body>
+
 </html>
