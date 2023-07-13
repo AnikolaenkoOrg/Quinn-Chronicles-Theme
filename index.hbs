@@ -1,26 +1,23 @@
 {{!< default}}
 
-<main class="gh-main gh-outer">
-    <div class="gh-inner">
+<main class="site-main">
 
-        <section class="gh-pagehead">
-            <h1 class="gh-pagehead-title">Latest</h1>
-        </section>
-
-        <div class="gh-topic gh-topic-grid">
-            <div class="gh-topic-content gh-feed">
-                {{#match pagination.page 2}}
-                    {{#get "posts" include="authors" limit=@config.posts_per_page as |recent|}}
-                        {{#foreach recent}}
-                            {{> "loop-grid"}}
-                        {{/foreach}}
-                    {{/get}}
-                {{/match}}
-                {{#foreach posts}}
-                    {{> "loop-grid" has_large_post=false}}
-                {{/foreach}}
+    <header class="feed-header gh-canvas">
+        {{#if @custom.feed_title}}
+            <div class="feed-header-wrapper">
+                <h2 class="feed-header-title">{{@custom.feed_title}}</h2>
             </div>
-        </div>
+        {{/if}}
+    </header>
 
+    <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed gh-canvas">
+        {{#foreach posts}}
+            {{> "loop"}}
+        {{/foreach}}
     </div>
+
+    {{pagination}}
+
 </main>
+
+{{#contentFor "body_class"}}{{#if @site.cover_image}} with-full-cover is-head-transparent{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}

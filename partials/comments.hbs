@@ -1,10 +1,9 @@
-{{#is "post"}}
-    {{#if comments}}
-        <div class="gh-comments gh-read-next gh-canvas">
-            <section class="gh-pagehead">
-                <h4 class="gh-pagehead-title">Comments ({{comment_count empty="0" singular="" plural=""}})</h3>
-            </section>
-            {{comments title="" count=false}}
-        </div>
-    {{/if}}
-{{/is}}
+{{#if comments}}
+    <section class="gh-comments gh-canvas">
+        <header class="gh-comments-header">
+            <h3 class="gh-comments-title related-title">Member discussion</h3>
+            {{comment_count class="gh-comments-count"}}
+        </header>
+        {{comments title="" count=false}}
+    </section>
+{{/if}}

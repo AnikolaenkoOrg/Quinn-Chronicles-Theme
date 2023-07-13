@@ -1,12 +1,12 @@
-# Headline
+# Edition
 
-Headline is a [Ghost](https://github.com/TryGhost/Ghost) theme built from the ground up for local news. While it can be used for any purpose, the theme takes a thoughtful approach to displaying large amounts of content across various areas of coverage. Headline adapts to your content by showcasing your most written about topics or by giving you the control to decide which topics are front and center.
+The newsletter theme for [Ghost](https://github.com/TryGhost/Ghost). A beautiful way to share stories with your growing audience.
 
-**Demo: https://headline.ghost.io**
+**Demo: https://edition.ghost.io**
 
 # Instructions
 
-1. [Download this theme](https://github.com/TryGhost/Headline/archive/main.zip)
+1. [Download this theme](https://github.com/TryGhost/Edition/archive/main.zip)
 2. Log into Ghost, and go to the `Design` settings area to upload the zip file
 
 # Development
@@ -23,7 +23,7 @@ yarn dev
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
 
-The `zip` Gulp task packages the theme files into `dist/headline.zip`, which you can then upload to your site.
+The `zip` Gulp task packages the theme files into `dist/edition.zip`, which you can then upload to your site.
 
 ```bash
 yarn zip
@@ -33,6 +33,6 @@ yarn zip
 
 This repo is synced automatically with [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo. If you're looking to contribute or raise an issue, head over to the main repository [TryGhost/Themes](https://github.com/TryGhost/Themes) where our official themes are developed.
 
-## Copyright & License
+# Copyright & License
 
 Copyright (c) 2013-2022 Ghost Foundation - Released under the [MIT license](LICENSE).

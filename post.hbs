@@ -1,36 +1,17 @@
 {{!< default}}
 
-<main class="gh-main">
+<main class="site-main">
+
     {{#post}}
-        <article class="gh-article {{post_class}}">
-
-            <header class="gh-article-header gh-canvas">
-                {{#if primary_tag}}
-                    <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
-                {{/if}}
-
-                <h1 class="gh-article-title">{{title}}</h1>
-
-                {{> "post-meta"}}
-
-                {{#if custom_excerpt}}
-                    <p class="gh-article-excerpt">{{custom_excerpt}}</p>
-                {{/if}}
-
-                {{> "feature-image"}}
-            </header>
-
-            <section class="gh-content gh-canvas">
-                {{content}}
-<span class="ctx-article-root"><!-- --></span>
-            </section>
-
-        </article>
+        {{> "content" width="wide"}}
     {{/post}}
 
-    {{> "related-posts"}}
+    {{#if @custom.show_related_posts}}
+        {{> "related-posts"}}
+    {{/if}}
 
     {{#post}}
         {{> "comments"}}
     {{/post}}
+
 </main>
